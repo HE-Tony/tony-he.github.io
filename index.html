@@ -501,8 +501,8 @@
           <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
           <div class="media-grid" id="media-1">
             <iframe width="100%" height="200" src="https://www.youtube.com/embed/D_S6l3zXkJM?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/turret1.jpg" alt="Turret photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/turret2.jpg" alt="Turret photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/turret1.jpg.HEIC" alt="Turret photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/turret2.jpg.png" alt="Turret photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
           </div>
         </div>
       </div>
@@ -532,7 +532,7 @@
           <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
           <div class="media-grid" id="media-2">
             <iframe width="100%" height="300" src="https://www.youtube.com/embed/C2e2RleqDec?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/box1.jpg" alt="Box photo" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/box1.jpg.HEIC" alt="Box photo" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
           </div>
         </div>
       </div>
@@ -561,8 +561,8 @@
           <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
           <div class="media-grid" id="media-3">
             <iframe width="100%" height="200" src="https://www.youtube.com/embed/593KnXa1tpU?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/engine1.jpg" alt="Engine photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/engine2.jpg" alt="Engine photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/engine1.jpg.png" alt="Engine photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/engine2.jpg.png" alt="Engine photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
           </div>
         </div>
       </div>
@@ -591,9 +591,9 @@
         <div class="project-media">
           <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
           <div class="media-grid" id="media-4">
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe1.jpg" alt="Pipe cover photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe2.jpg" alt="Pipe cover photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
-            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe3.jpg" alt="Pipe cover photo 3" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe1.jpg.png" alt="Pipe cover photo 1" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe2.jpg.png" alt="Pipe cover photo 2" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://raw.githubusercontent.com/HE-Tony/tony-he.github.io/main/pipe3.jpg.HEIC" alt="Pipe cover photo 3" style="border-radius: 10px; width: 100%; height: 100%; object-fit: cover;">
           </div>
         </div>
       </div>
@@ -629,70 +629,6 @@
       });
       document.documentElement.lang = lang;
     }
-
-    // ── Media slots ──────────────────────────────────────────────
-    const SLOTS = 4;
-
-    function buildMediaGrid(containerId) {
-      const grid = document.getElementById(containerId);
-      for (let i = 0; i < SLOTS; i++) {
-        const slot = document.createElement('div');
-        slot.className = 'media-slot';
-
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*,video/*';
-
-        const placeholder = document.createElement('div');
-        placeholder.className = 'media-slot-placeholder';
-        placeholder.innerHTML = `
-          <span class="media-slot-icon">＋</span>
-          <span class="media-slot-text">Photo or<br>video</span>
-        `;
-
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'remove-btn';
-        removeBtn.textContent = '✕';
-        removeBtn.title = 'Remove';
-
-        slot.appendChild(input);
-        slot.appendChild(placeholder);
-        slot.appendChild(removeBtn);
-
-        input.addEventListener('change', function () {
-          const file = this.files[0];
-          if (!file) return;
-          const url = URL.createObjectURL(file);
-          slot.querySelectorAll('img, video').forEach(el => el.remove());
-          if (file.type.startsWith('image/')) {
-            const img = document.createElement('img');
-            img.src = url;
-            slot.appendChild(img);
-          } else if (file.type.startsWith('video/')) {
-            const video = document.createElement('video');
-            video.src = url;
-            video.controls = true;
-            video.muted = true;
-            slot.appendChild(video);
-          }
-          slot.classList.add('has-media');
-        });
-
-        removeBtn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          slot.querySelectorAll('img, video').forEach(el => el.remove());
-          input.value = '';
-          slot.classList.remove('has-media');
-        });
-
-        grid.appendChild(slot);
-      }
-    }
-
-    buildMediaGrid('media-1');
-    buildMediaGrid('media-2');
-    buildMediaGrid('media-3');
-    buildMediaGrid('media-4');
   </script>
 
 </body>
