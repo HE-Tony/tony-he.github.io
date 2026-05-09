@@ -3,59 +3,410 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Tony He — Mechanical Engineering</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #ffffff; --bg-secondary: #f7f6f3; --text: #1a1a1a;
-      --text-secondary: #666; --text-tertiary: #999;
-      --border: rgba(0,0,0,0.1); --border-mid: rgba(0,0,0,0.18);
+      --bg: #ffffff;
+      --bg-secondary: #f7f6f3;
+      --text: #1a1a1a;
+      --text-secondary: #666;
+      --text-tertiary: #999;
+      --border: rgba(0,0,0,0.1);
+      --border-mid: rgba(0,0,0,0.18);
     }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
     a { text-decoration: none; color: inherit; }
-    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
-    nav { padding: 2rem 0; border-bottom: 0.5px solid var(--border); margin-bottom: 4rem; }
-    nav .container { display: flex; justify-content: space-between; align-items: center; }
-    .nav-name { font-family: 'DM Serif Display', serif; font-size: 18px; }
-    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-size: 12px; font-weight: 400; color: var(--text-secondary); letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; }
-    .lang-toggle { display: flex; border: 0.5px solid var(--border-mid); border-radius: 999px; overflow: hidden; }
-    .lang-btn { font-size: 11px; padding: 4px 12px; border: none; background: transparent; color: var(--text-secondary); cursor: pointer; }
-    .lang-btn.active { background: var(--text); color: var(--bg); }
-    .hero { margin-bottom: 5rem; animation: fadeUp 0.6s ease both; }
-    .hero-tag { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1rem; }
-    .hero-bio { font-size: 16px; font-weight: 300; color: var(--text-secondary); max-width: 520px; margin-bottom: 2rem; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; }
-    .badge { font-size: 12px; padding: 5px 14px; border: 0.5px solid var(--border-mid); border-radius: 999px; color: var(--text-secondary); }
-    .divider { height: 0.5px; background: var(--border); margin: 3.5rem 0; }
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.5rem; }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 4rem; }
-    .about-card { background: var(--bg-secondary); border-radius: 12px; padding: 1.25rem 1.5rem; }
-    .about-card-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; margin-bottom: 0.5px; }
-    .about-card-value { font-family: 'DM Serif Display', serif; font-size: 17px; }
-    .project-card { border: 0.5px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 1.5rem; animation: fadeUp 0.5s ease both; }
-    .project-header { padding: 1.75rem; background: var(--bg); transition: background 0.15s; }
-    .project-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 0.5rem; }
-    .project-desc { font-size: 14px; color: var(--text-secondary); font-weight: 300; margin-bottom: 1rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .project-tag { font-size: 11px; padding: 3px 10px; background: var(--bg-secondary); border-radius: 4px; color: var(--text-secondary); }
-    .project-media { border-top: 0.5px solid var(--border); padding: 1.25rem 1.75rem; background: var(--bg-secondary); }
-    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-    .media-slot { position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; background: var(--bg); border: 0.5px dashed var(--border-mid); display: flex; align-items: center; justify-content: center; cursor: pointer; }
-    .media-slot input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-    .media-slot-text { font-size: 11px; color: var(--text-tertiary); text-align: center; }
-    .contact { border: 0.5px solid var(--border); border-radius: 12px; padding: 2rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
-    .contact-btn { font-size: 13px; padding: 9px 18px; border: 0.5px solid var(--border-mid); border-radius: 8px; color: var(--text); }
-    footer { border-top: 0.5px solid var(--border); padding: 2rem 0; text-align: center; font-size: 12px; color: var(--text-tertiary); }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 580px) { .nav-links { display: none; } .about-grid { grid-template-columns: 1fr; } .media-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav {
+      padding: 2rem 0;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 4rem;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* LANGUAGE TOGGLE */
+    .lang-toggle {
+      display: flex;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      font-size: 11px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .hero {
+      margin-bottom: 5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .badge {
+      font-size: 12px;
+      padding: 5px 14px;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 999px;
+      color: var(--text-secondary);
+    }
+
+    .divider {
+      height: 0.5px;
+      background: var(--border);
+      margin: 3.5rem 0;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .about-card {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .about-card-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 0.5rem;
+    }
+
+    .about-card-value {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .project-card {
+      border: 0.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .project-header {
+      padding: 1.75rem;
+      display: grid;
+      grid-template-columns: 1fr 24px;
+      gap: 1rem;
+      align-items: start;
+      background: var(--bg);
+      transition: background 0.15s;
+    }
+
+    .project-header:hover { background: var(--bg-secondary); }
+
+    .project-num {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+
+    .project-arrow {
+      font-size: 20px;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+      user-select: none;
+    }
+
+    .project-media {
+      border-top: 0.5px solid var(--border);
+      padding: 1.25rem 1.75rem;
+      background: var(--bg-secondary);
+    }
+
+    .media-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 10px;
+    }
+
+    .media-slot {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--bg);
+      border: 0.5px dashed var(--border-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .media-slot:hover { border-color: var(--text-tertiary); background: #f0efec; }
+
+    .media-slot input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .media-slot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .media-slot-icon { font-size: 22px; color: var(--text-tertiary); }
+
+    .media-slot-text {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .media-slot img,
+    .media-slot video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .media-slot .remove-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 13px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      border: none;
+      line-height: 1;
+    }
+
+    .media-slot.has-media .remove-btn { display: flex; }
+    .media-slot.has-media input { display: none; }
+    .media-slot.has-media .media-slot-placeholder { display: none; }
+
+    .contact {
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .contact-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .contact-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; }
+
+    .contact-links { display: flex; gap: 10px; }
+
+    .contact-btn {
+      font-size: 13px;
+      font-family: 'DM Sans', sans-serif;
+      padding: 9px 18px;
+      border: 0.5px solid var(--border-mid);
+      border-radius: 8px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .contact-btn:hover { background: var(--bg-secondary); }
+
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 580px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact { flex-direction: column; align-items: flex-start; }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+    }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="container">
       <span class="nav-name">Tony He</span>
@@ -74,61 +425,266 @@
   </nav>
 
   <div class="container">
-    <section class="hero">
-      <p class="hero-tag" data-en="Mechanical Engineering · Co-op Program · Concordia University" data-fr="Génie mécanique · Programme co-op · Université Concordia">Mechanical Engineering · Co-op Program · Concordia University</p>
-      <p class="hero-bio" data-en="Mechanical engineering student at Concordia focusing on CAD design and 3D printing." data-fr="Étudiant en génie mécanique à Concordia spécialisé en conception CAO et impression 3D.">Mechanical engineering student at Concordia focusing on CAD design and 3D printing.</p>
-      <div class="badges"><span class="badge">SolidWorks</span><span class="badge">AutoCAD</span><span class="badge">3D Printing</span></div>
-    </section>
 
-    <section id="about">
-      <p class="section-label" data-en="About" data-fr="À propos">About</p>
-      <div class="about-grid">
-        <div class="about-card"><p class="about-card-label">University</p><p class="about-card-value">Concordia University</p></div>
-        <div class="about-card"><p class="about-card-label">Degree</p><p class="about-card-value">B.Eng. Mechanical Engineering</p></div>
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-tag" data-en="Mechanical Engineering · Co-op Program · Concordia University · Montréal" data-fr="Génie mécanique · Programme co-op · Université Concordia · Montréal">
+        Mechanical Engineering · Co-op Program · Concordia University · Montréal
+      </p>
+      <p class="hero-bio" data-en="First-year mechanical engineering student at Concordia University with a hands-on approach to learning. I enjoy turning ideas into physical things — whether that means writing code, modelling in CAD, or figuring out the right material for the job." data-fr="Étudiant en première année de génie mécanique à l'Université Concordia, avec une approche pratique de l'apprentissage. J'aime transformer les idées en objets concrets — que ce soit en écrivant du code, en modélisant en CAO ou en choisissant le bon matériau pour un projet.">
+        First-year mechanical engineering student at Concordia University with a hands-on approach to learning. I enjoy turning ideas into physical things — whether that means writing code, modelling in CAD, or figuring out the right material for the job.
+      </p>
+      <div class="badges">
+        <span class="badge">SolidWorks</span>
+        <span class="badge">AutoCAD</span>
+        <span class="badge">3D Printing</span>
+        <span class="badge">Arduino</span>
+        <span class="badge">C++</span>
       </div>
     </section>
 
     <div class="divider"></div>
 
+    <!-- ABOUT -->
+    <section id="about">
+      <p class="section-label" data-en="About" data-fr="À propos">About</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <p class="about-card-label" data-en="University" data-fr="Université">University</p>
+          <p class="about-card-value">Concordia University</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label" data-en="Degree" data-fr="Diplôme">Degree</p>
+          <p class="about-card-value" data-en="B.Eng. Mechanical Engineering" data-fr="B.Ing. Génie mécanique">B.Eng. Mechanical Engineering</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label" data-en="Year" data-fr="Année">Year</p>
+          <p class="about-card-value" data-en="Entering 2nd year — Fall 2025" data-fr="Entrée en 2e année — Automne 2025">Entering 2nd year — Fall 2025</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label" data-en="Program" data-fr="Programme">Program</p>
+          <p class="about-card-value" data-en="Co-op — actively seeking placement" data-fr="Co-op — à la recherche d'un stage">Co-op — actively seeking placement</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PROJECTS -->
     <section id="projects">
-      <p class="section-label" data-en="Projects" data-fr="Projets">Projects</p>
+      <p class="section-label" data-en="Projects & Work" data-fr="Projets & Travaux">Projects & Work</p>
 
-      <!-- Project 1 -->
+      <!-- PROJECT 1 -->
       <div class="project-card">
         <div class="project-header">
-          <p class="project-title">Light-Tracking Turret</p>
-          <p class="project-desc">3D printed motorized turret using Arduino and photoresistors.</p>
+          <div>
+            <p class="project-num">01</p>
+            <p class="project-title" data-en="Light-Tracking Turret" data-fr="Tourelle de suivi de lumière">Light-Tracking Turret</p>
+            <p class="project-desc"
+              data-en="Designed and 3D printed a motorized turret that rotates 360 degrees horizontally and tilts up and down vertically. The tip houses a photoresistor that scans the room to find the brightest light source. The system uses stepper and servo motors controlled via Arduino to autonomously point toward the brightest spot in the room. Combines CAD design, FDM 3D printing, and embedded systems programming in one complete project."
+              data-fr="Conception et impression 3D d'une tourelle motorisée capable de rotation à 360 degrés horizontalement et de mouvement vertical. La pointe est équipée d'une photorésistance qui scanne la pièce pour trouver la source lumineuse la plus brillante. Le système utilise des moteurs pas à pas et des servomoteurs contrôlés par Arduino pour pointer automatiquement vers le point le plus lumineux. Combine la conception CAO, l'impression 3D FDM et la programmation de systèmes embarqués dans un seul projet complet.">
+              Designed and 3D printed a motorized turret that rotates 360 degrees horizontally and tilts up and down vertically. The tip houses a photoresistor that scans the room to find the brightest light source. The system uses stepper and servo motors controlled via Arduino to autonomously point toward the brightest spot in the room. Combines CAD design, FDM 3D printing, and embedded systems programming in one complete project.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">SolidWorks</span>
+              <span class="project-tag">3D Printing</span>
+              <span class="project-tag">Arduino</span>
+              <span class="project-tag">Stepper motor</span>
+              <span class="project-tag">Servo motor</span>
+              <span class="project-tag">Photoresistor</span>
+              <span class="project-tag">Embedded systems</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
         </div>
         <div class="project-media">
-          <iframe width="100%" height="250" src="https://www.youtube-nocookie.com/embed/D_S6l3zXkJM?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation allow-popups allow-popups-to-escape-sandbox" allowfullscreen style="border-radius:10px;"></iframe>
+          <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
+          <div class="media-grid" id="media-1">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/D_S6l3zXkJM?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
 
-      <!-- Project 2 -->
+      <!-- PROJECT 2 -->
       <div class="project-card">
         <div class="project-header">
-          <p class="project-title">Engine Assembly — CAD</p>
-          <p class="project-desc">Inline-4 engine model created in SolidWorks.</p>
+          <div>
+            <p class="project-num">02</p>
+            <p class="project-title" data-en="Proximity-Triggered Self-Opening Box" data-fr="Boîte à ouverture automatique par proximité">Proximity-Triggered Self-Opening Box</p>
+            <p class="project-desc"
+              data-en="Built an automated box that opens on its own when a hand is detected nearby. An ultrasonic sensor measures distance in real time; once an object enters the trigger range, it signals a servo motor to lift the lid. Wired and programmed the full system using Arduino — a rough but fully functional prototype, and my first end-to-end electronics and embedded coding project."
+              data-fr="Construction d'une boîte automatisée qui s'ouvre seule lorsqu'une main est détectée à proximité. Un capteur ultrasonique mesure la distance en temps réel ; une fois qu'un objet entre dans la zone de déclenchement, il envoie un signal à un servomoteur pour soulever le couvercle. Système câblé et programmé entièrement avec Arduino — un prototype brut mais pleinement fonctionnel, et mon premier projet complet en électronique embarquée.">
+              Built an automated box that opens on its own when a hand is detected nearby. An ultrasonic sensor measures distance in real time; once an object enters the trigger range, it signals a servo motor to lift the lid. Wired and programmed the full system using Arduino — a rough but fully functional prototype, and my first end-to-end electronics and embedded coding project.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Arduino</span>
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Servo motor</span>
+              <span class="project-tag">Ultrasonic sensor</span>
+              <span class="project-tag">Embedded systems</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
         </div>
         <div class="project-media">
-          <iframe width="100%" height="250" src="https://www.youtube-nocookie.com/embed/593KnXa1tpU?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation allow-popups allow-popups-to-escape-sandbox" allowfullscreen style="border-radius:10px;"></iframe>
+          <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
+          <div class="media-grid" id="media-2">
+            <iframe width="100%" height="300" src="https://www.youtube.com/embed/C2e2RleqDec?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <p class="project-num">03</p>
+            <p class="project-title" data-en="Inline-4 Engine Assembly — CAD Model" data-fr="Moteur 4 cylindres en ligne — Modèle CAO">Inline-4 Engine Assembly — CAD Model</p>
+            <p class="project-desc"
+              data-en="Modelled a simplified inline-4 engine in SolidWorks, including the crankshaft and piston assemblies. The goal was to understand how individual parts relate to each other in a mechanical system and to practice building multi-part assemblies with proper mates and constraints."
+              data-fr="Modélisation d'un moteur 4 cylindres en ligne simplifié dans SolidWorks, incluant le vilebrequin et les pistons. L'objectif était de comprendre comment les pièces individuelles s'articulent dans un système mécanique, et de s'exercer à créer des assemblages multi-pièces avec des contraintes appropriées.">
+              Modelled a simplified inline-4 engine in SolidWorks, including the crankshaft and piston assemblies. The goal was to understand how individual parts relate to each other in a mechanical system and to practice building multi-part assemblies with proper mates and constraints.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">SolidWorks</span>
+              <span class="project-tag">CAD</span>
+              <span class="project-tag">Assembly modelling</span>
+              <span class="project-tag">Mechanical design</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-media">
+          <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
+          <div class="media-grid" id="media-3">
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/593KnXa1tpU?rel=0" title="YouTube video player" style="border: 0; border-radius: 10px; grid-column: span 2;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <p class="project-num">04</p>
+            <p class="project-title" data-en="Shower Pipe Cover — 3D Printed" data-fr="Cache-tuyau de douche — Impression 3D">Shower Pipe Cover — 3D Printed</p>
+            <p class="project-desc"
+              data-en="Designed and printed a custom cover for a pipe protruding from a shower wall, where moisture, heat, and water exposure are constant. Chose PETG over PLA for its higher temperature resistance. Used a gyroid infill pattern to minimize channels where water could accumulate, and reduced layer height to improve watertightness. Every print setting was chosen deliberately based on the environment the part would live in."
+              data-fr="Conception et impression d'un cache-tuyau sur mesure pour un tuyau saillant dans la paroi d'une douche, exposé en permanence à l'humidité, la chaleur et l'eau. Choix du PETG plutôt que du PLA pour sa meilleure résistance à la chaleur. Utilisation d'un remplissage gyroïde pour limiter les canaux où l'eau pourrait s'accumuler, et réduction de la hauteur de couche pour améliorer l'étanchéité. Chaque paramètre d'impression a été choisi en fonction de l'environnement d'utilisation.">
+              Designed and printed a custom cover for a pipe protruding from a shower wall, where moisture, heat, and water exposure are constant. Chose PETG over PLA for its higher temperature resistance. Used a gyroid infill pattern to minimize channels where water could accumulate, and reduced layer height to improve watertightness. Every print setting was chosen deliberately based on the environment the part would live in.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">3D Printing</span>
+              <span class="project-tag">PETG</span>
+              <span class="project-tag">Gyroid infill</span>
+              <span class="project-tag">Material selection</span>
+              <span class="project-tag">Functional design</span>
+            </div>
+          </div>
+          <span class="project-arrow">↗</span>
+        </div>
+        <div class="project-media">
+          <p class="media-label" data-en="Photos & Videos" data-fr="Photos & Vidéos">Photos & Videos</p>
+          <div class="media-grid" id="media-4"></div>
+        </div>
+      </div>
+
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="contact">
-      <div><p class="contact-title">Let's connect</p></div>
-      <a href="mailto:he_tony2005@hotmail.com" class="contact-btn">✉ Email</a>
+      <div>
+        <p class="contact-title" data-en="Let's connect" data-fr="Contactez-moi">Let's connect</p>
+        <p class="contact-sub" data-en="Co-op student — available for work terms." data-fr="Étudiant en co-op — disponible pour des stages.">Co-op student — available for work terms.</p>
+      </div>
+      <div class="contact-links">
+        <a href="https://linkedin.com/in/yourprofile" class="contact-btn" target="_blank">↗ LinkedIn</a>
+        <a href="mailto:he_tony2005@hotmail.com" class="contact-btn">✉ Email</a>
+      </div>
     </section>
+
   </div>
 
-  <footer><p>Tony He · 2026</p></footer>
+  <footer>
+    <p>Tony He · 2026</p>
+  </footer>
 
   <script>
+    // ── Language toggle ──────────────────────────────────────────
     function setLang(lang) {
-      document.querySelectorAll('[data-en]').forEach(el => el.textContent = el.getAttribute('data-' + lang));
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.textContent === lang.toUpperCase()));
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+      });
+      document.documentElement.lang = lang;
     }
+
+    // ── Media slots ──────────────────────────────────────────────
+    const SLOTS = 4;
+
+    function buildMediaGrid(containerId) {
+      const grid = document.getElementById(containerId);
+      for (let i = 0; i < SLOTS; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'media-slot';
+
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*,video/*';
+
+        const placeholder = document.createElement('div');
+        placeholder.className = 'media-slot-placeholder';
+        placeholder.innerHTML = `
+          <span class="media-slot-icon">＋</span>
+          <span class="media-slot-text">Photo or<br>video</span>
+        `;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.className = 'remove-btn';
+        removeBtn.textContent = '✕';
+        removeBtn.title = 'Remove';
+
+        slot.appendChild(input);
+        slot.appendChild(placeholder);
+        slot.appendChild(removeBtn);
+
+        input.addEventListener('change', function () {
+          const file = this.files[0];
+          if (!file) return;
+          const url = URL.createObjectURL(file);
+          slot.querySelectorAll('img, video').forEach(el => el.remove());
+          if (file.type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = url;
+            slot.appendChild(img);
+          } else if (file.type.startsWith('video/')) {
+            const video = document.createElement('video');
+            video.src = url;
+            video.controls = true;
+            video.muted = true;
+            slot.appendChild(video);
+          }
+          slot.classList.add('has-media');
+        });
+
+        removeBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          slot.querySelectorAll('img, video').forEach(el => el.remove());
+          input.value = '';
+          slot.classList.remove('has-media');
+        });
+
+        grid.appendChild(slot);
+      }
+    }
+
+    buildMediaGrid('media-1');
+    buildMediaGrid('media-2');
+    buildMediaGrid('media-3');
+    buildMediaGrid('media-4');
   </script>
+
 </body>
 </html>
